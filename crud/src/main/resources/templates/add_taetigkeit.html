@@ -1,0 +1,48 @@
+<title>Add Employee</title>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body>
+<div align="center">
+    <div class="container">
+        <h1>Adding Employee to the existing task below</h1>
+        <br/>
+        //The model object to use for collecting th object
+        <form action="#" th:action="@{/updateEmployee/{id}(id=${task.id})}" th:object="${taetigkeit}" method="post">
+
+            <!-- needed to identify the task -->
+
+
+
+            <!-- refers to @modelattribute mitarbeiter -->
+            <select th:field="*{mitarbeiter}">
+                <option th:each="mitarbeiter: ${mitarbeiterList}"
+                        th:value="${mitarbeiter.getMitarbeiterid()}"
+                        th:text="${mitarbeiter.getVorname()}">
+                </option>
+            </select>
+
+            <tr>
+                <td>Beschreibung:</td>
+                <td><input type="text" th:field="*{beschreibung}"/></td>
+            </tr>
+
+            <tr>
+                <td>Endtermin:</td>
+                <td><input type="date" th:field="*{endeTermin}"/></td>
+            </tr>
+
+
+
+
+                        <td colspan="2"><button type="submit">Save</button> </td>
+                    </tr>
+
+
+                </table>
+        </form>
+    </div>
+</body>
+</html>

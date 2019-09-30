@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Edit Product</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body>
+<div align="center">
+    <div class="container">
+    <h1>Edit Task</h1>
+    <br />
+    <form action="#" th:action="@{/update}" th:object="${task}" method="post">
+
+        <div class="form-group">
+            <input type="hidden" th:field="*{id}"/>
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Stichwort:</td>
+                <td><input type="text" th:field="*{stichwort}"/></td>
+            </tr>
+            <tr>
+                <td>Beschreibung:</td>
+                <td><input type="text" th:field="*{beschreibung}"/></td>
+            </tr>
+            <tr>
+                <td>Fertig Am:</td>
+                <td><input type="date" th:field="*{fertigAm}"/></td>
+            </tr>
+
+            <tr>
+                <td>Priorität:</td>
+                <td>
+                    <select th:field="*{priority}">
+                        <option th:each="priority: ${T(com.example.crud.model.Task.Priority).values()}"
+                                th:value="${priority}"
+                                th:text="${priority}">
+
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <select th:field="*{status}">
+                        <option th:each="status: ${T(com.example.crud.model.Task.Status).values()}"
+                                th:value="${status}"
+                                th:text="${status}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Kategorie:</td>
+                <td>
+                    <select th:field="*{kategorie}">
+                        <option th:each="kategorie: ${T(com.example.crud.model.Task.Kategorie).values()}"
+                                th:value="${kategorie}"
+                                th:text="${kategorie}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Kontaktperson wählen:</td>
+                <td>
+                    <select th:field="*{kontaktperson}">
+                        <option th:each="kontaktperson: ${kontaktpersonlist}"
+                                th:value="${kontaktperson.getPersonid()}"
+                                th:text="${kontaktperson.getSpitzname()}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2"><button type="submit">Save</button> </td>
+            </tr>
+
+
+        </table>
+    </form>
+</div>
+</body>
+</html>
